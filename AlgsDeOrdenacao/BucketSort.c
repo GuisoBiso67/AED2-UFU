@@ -27,16 +27,19 @@ void bubbleSort(int* v, int n) {
 void bucketSort(int* v, int n) {
     int i, j, bigger, smaller, numBuckets, pos;
     struct bucket *bkt;
+
     // acha maior e menor valor
     bigger = smaller = v[0];
     for (i=1;i<n;i++) {
         if (v[i]>bigger) bigger = v[i];
         if (v[i]<smaller) smaller = v[i];
     }
+
     // inicializa baldes
     numBuckets = (bigger - smaller) / SIZE + 1;
-    bkt = (struct bucket*)malloc(sizeof(struct bucket) * numBuckets);
-    for (i=0;i<numBuckets;i++) bkt[i].qtd = 0;
+    bkt = (struct bucket*)malloc(sizeof(struct bucket) * numBuckets); // separa espaço de memória para o struct bkt;
+    for (i=0;i<numBuckets;i++) bkt[i].qtd = 0; // zera as posições so bkt;
+
     // distribui os valores nos baldes;
     for (i=0;i<n;i++) {
         pos = (v[i]-smaller)/SIZE; // Calcula em qual balde (pos) o valor v[i] deve ser colocado;

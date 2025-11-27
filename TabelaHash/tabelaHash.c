@@ -17,7 +17,7 @@ Hash* criaHash(int TABLE_SIZE) {
             return NULL;
         }
         ha->qtd = 0;
-        for (int i = 0; i < ha->TABLE_SIZE; i++) {
+        for (int i = 0; i < ha->TABLE_SIZE; i++) { // NULL para todos os valores
             ha->itens[i] = NULL;
         }
     }
@@ -37,9 +37,12 @@ void liberaHash(Hash* ha) {
 }
 
 int chaveDivisao(int chave, int TABLE_SIZE) {
-    // "0x7FFFFFFF" elimina bit de sina do valor chave;
+    // "0x7FFFFFFF" elimina bit de sinal do valor chave;
     // & = "E bit-a-bit";
+    // O propósito principal da expressão "chave & 0x7FFFFFFF" é garantir que o valor de chave usado na operação de
+    // módulo (%) seja não-negativo (positivo ou zero)
     return (chave & 0x7FFFFFFF) % TABLE_SIZE;
+    // O módulo garante que o índice de hash retornado estará sempre no intervalo válido: [0, TABLE_SIZE - 1];
 }
 
 int chaveMultiplicacao(int chave, int TABLE_SIZE) {
@@ -51,12 +54,15 @@ int chaveMultiplicacao(int chave, int TABLE_SIZE) {
 
 int chaveDobra(int chave, int TABLE_SIZE) {
     int num_bits = 10;
-    int parte1 = chave >> num_bits;
-    int parte2 = chave & (TABLE_SIZE - 1);
-    return (parte1 ^ parte2); // ou exclusivo
+    int parte1 = chave >> num_bits; // Joga fora os 10 bits menos significativos;
+    int parte2 = chave & (TABLE_SIZE - 1); // Isola os 10 bits menos significativos;
+    return (parte1 ^ parte2); // ou exclusivo que compara bit a bit;
+    // Como parte1 e parte2 contêm bits que vieram de posições diferentes na chave original e foram alinhados, essa
+    // operação "dobra" as informações, misturando os bits de valor alto com os bits de valor baixo;
+    // ele retorna um conjunto de bits que forma um inteiro;
 }
 
-// trata string como chave; converte string em inteiro;
+// trata string como chave; converte string em inteiro; pode causar overflow;
 int valorString(char *str) {
     int i, valor = 7;
     int tam = strlen(str);
@@ -129,7 +135,7 @@ int buscaHash_EnderAberto(Hash* ha, int mat, struct aluno* al) {
     pos = chaveDivisao(mat, ha->TABLE_SIZE);
     for (i=0;i<ha->TABLE_SIZE;i++) {
         newPos = sondagemLinear(pos, i, ha->TABLE_SIZE);
-        if (ha->itens[newPos] == NULL) return 0;
+        if (ha->itens[newPos] == NULL) return 0; // pode dar problema após uma remoção, defina DELETED;
         if (ha->itens[newPos]->matricula == mat) {
             *al = *(ha->itens[newPos]);
             return 1;

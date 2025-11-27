@@ -4,16 +4,16 @@
 #define K 1001
 void countingSort(int* v, int n) {
     int i, j, k;
-    int buckets[K]; // define um vetor auxiliar de 100 casas;
+    int buckets[K]; // define um vetor auxiliar de K casas;
     for (i=0;i<K;i++) buckets[i] = 0; // zera o vetor auxiliar;
 
-    // incrementa a casa no vetor auxiliar com o número em v[i]; Ex: if v[i] = 5, buckets[5]++;
+    // incrementa a casa no vetor auxiliar com o número em v[i]; Ex: if v[i] = 5, buckets[5]++, se outro v[i]=5, ele incrementa dnv;
     for (i=0;i<n;i++) buckets[v[i]]++;
 
     // reconstruindo o vetor ordenado;
     for (i=0, j=0; j<K; j++) { // para cada número possível (0 a K-1), verifica quantas vezes ele aparece;
         // coloca o número 'j' de volta no vetor v (original), na quantidade registrada em buckets[j];
-        for (k = buckets[j]; k > 0; k--) v[i++] = j;
+        for (k = buckets[j]; k > 0; k--) v[i++] = j; // pós-incremento;
     }
 }
 

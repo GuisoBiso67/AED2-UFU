@@ -19,7 +19,7 @@ void bubbleSort(int* v, int n) {
 }
 
 int main() {
-    int n; // tamnho do vetor
+    int n; // tamanho do vetor
     printf("Tamanho do vetor: ");
     scanf("%d",&n);
     int *v = malloc(sizeof(int)*n);

@@ -8,7 +8,7 @@ void merge(int* v, int begin, int middle, int end) {
     size = end-begin+1;
     p1=begin; // inicio vetor a esquerda;
     p2=middle+1; // inicio vetor a direita;
-    temp = (int*)malloc(size*sizeof(int)); // vetor temporario;
+    temp = (int*)malloc(size*sizeof(int)); // vetor temporario que construirá o vetor ordenado?
     if (temp!=NULL) {
         for (i=0;i<size;i++) {
             if (!end1 && !end2) {

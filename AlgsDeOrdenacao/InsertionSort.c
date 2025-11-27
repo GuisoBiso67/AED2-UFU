@@ -1,6 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
+/*
+ *
+EX: 2 1 3 5 4
 
+IT 1
+i = 1; j = 0;
+temp = 1;
+IT 1.1 (temp < 2? sim && 0 >= 0? sim)
+v[1] = 2;
+j = -1;
+PARA IT 1.1
+v[0] = 1
+VETOR: 1 2 3 5 4
+
+IT 2
+i = 2; j = 1;
+temp = 3;
+IT 2.1 (temp < 1? não)
+PARA IT 2.1
+v[2] = 3;
+VETOR: 1 2 3 5 4
+
+IT 3
+i = 3; j = 2;
+temp = 5;
+IT 3.1 (temp < 3? nao)
+PARA IT 3.1
+v[3] = 5;
+VETOR: 1 2 3 5 4
+
+IT 4
+i = 4; j = 3;
+temp = 4
+IT 4.1 (temp < 5? sim && 3 >= 0? sim)
+v[4] = 5;
+j = 2;
+IT 4.2 (temp < 3? não)
+PARA IT 4.1
+v[3] = 4
+VETOR: 1 2 3 4 5 OK
+
+*/
 void insertionSort(int* v, int n) {
     int j, temp;
     for (int i = 1; i < n; i++) {
@@ -10,7 +51,7 @@ void insertionSort(int* v, int n) {
             v[j+1] = v[j]; // o da frente vira o anterior para "abrir espaço";
             j--; // diminui o J para manter o loop, se necessário;
         }
-        v[j+1] = temp; // se não entra no loop, ele apenas é adicionado a parte ja ordenada;
+        v[j+1] = temp; // se não entrar no loop, ele apenas é adicionado a parte ja ordenada;
     }
 }
 
