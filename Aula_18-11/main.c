@@ -53,7 +53,7 @@ int main(){
     struct aluno al;
     int qtdInseridos = 0;
 
-    // Lê matrícula, nome, n1, n2, n3 (ajuste conforme seu arquivo)
+    // Lê matrícula, nome, n1, n2, n3
     while(fscanf(arq, "%d %s %f %f %f", &al.matricula, al.nome, &al.n1, &al.n2, &al.n3) != EOF){
 
         // Chama a função passando o endereço do contador
