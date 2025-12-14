@@ -77,8 +77,7 @@ int insereHash_SemColisao(Hash* ha, struct aluno al) {
     if (ha == NULL || ha->qtd == ha->TABLE_SIZE) return 0;
     int chave = al.matricula;
     int pos = chaveDivisao(chave, ha->TABLE_SIZE);
-    struct aluno* novo;
-    novo = (struct aluno*) malloc(sizeof(struct aluno));
+    struct aluno* novo = (struct aluno*) malloc(sizeof(struct aluno));
     if (novo == NULL) return 0;
     *novo = al;
     ha->itens[pos] = novo;

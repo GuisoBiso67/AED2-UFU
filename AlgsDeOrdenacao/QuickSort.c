@@ -7,7 +7,7 @@ int partition(int *v, int begin, int end) {
     int left, right, pivot, aux;
     left = begin;
     right = end;
-    pivot = v[begin];
+    pivot = v[begin]; // nesse caso o pivô é o primeiro elemento;
     while (left < right) { // "enquanto a direita estiver a direita";
         while (v[left] <= pivot && left <= end) left++; // anda para a direita se o elemento for menor que o pivô;
         while (v[right] > pivot && right >= 0) right--; // anda para a esquerda se o elemento for maior que o pivô;

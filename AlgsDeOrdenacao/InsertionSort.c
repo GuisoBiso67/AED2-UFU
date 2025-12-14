@@ -40,12 +40,39 @@ IT 4.2 (temp < 3? não)
 PARA IT 4.1
 v[3] = 4
 VETOR: 1 2 3 4 5 OK
+ ----------------------------------------
+EX2: 5 4 3 2 1
+
+IT 1
+i = 1; j = 0;
+temp = 1;
+IT 1.1 (temp < 5? sim && 0 >= 0? sim)
+v[1] = 5;
+j = -1;
+PARA IT 1.1
+v[0] = 4
+VETOR: 4 5 3 2 1
+
+IT 2
+i = 2; j = 1;
+temp = 3;
+IT 2.1 (temp < 4? sim && 1 >= 0? sim)
+v[2] = 5;
+j = 0;
+IT 2.2 (temp < 4? sim && 0 >= 0? sim)
+v[1] = 4;
+j = -1
+PARA IT 2.2
+v[0] = 3
+VETOR: 3 4 5 2 1
+
+ja deu pra entender
 
 */
 void insertionSort(int* v, int n) {
     int j, temp;
     for (int i = 1; i < n; i++) {
-        temp = v[i]; // armazena valor atual;
+        temp = v[i]; // guarda o elemento atual; a partir daqui v[i] vira um buraco para deslocar os elementos maiores dentro do while;
         j = i - 1; // pega tamanho do vetor que já está ordenado (a esquerda);
         while (temp < v[j] && j>=0) { // entra no loop se o valor atual é menor;
             v[j+1] = v[j]; // o da frente vira o anterior para "abrir espaço";
