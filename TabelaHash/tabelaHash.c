@@ -95,7 +95,7 @@ int buscaHash_SemColisao(Hash* ha, int mat, struct aluno* al) {
 
 // problema do agrupamento primario (longa sequencia de espaços ocupados), o que deixa a tabela ineficiente;
 int sondagemLinear(int pos, int i, int TABLE_SIZE) {
-    return ((pos+1) & 0x7FFFFFFF) % TABLE_SIZE;
+    return ((pos+i) & 0x7FFFFFFF) % TABLE_SIZE;
 }
 
 // resolve o problema de agrupamento primario, mas gera o secundario;
